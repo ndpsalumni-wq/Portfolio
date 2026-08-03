@@ -42,14 +42,14 @@
             features: ["Student Council application portal", "Alumni and former-student update workflows", "Teacher and faculty data collection", "Student email verification and updates", "Photo and document uploads", "Printable acknowledgements and submission IDs"],
             tags: ["Apps Script", "Google Sheets", "Google Drive", "Gmail", "Validation", "Automation"]
         },
-        design: {
-            kicker: "Public-sector UX concept",
-            title: "CBSE Website Redesign Concept",
-            summary: "A design exploration showing how a major education portal can feel modern and accessible while retaining an official, trustworthy institutional identity.",
-            challenge: "Large public websites often contain valuable information but make users work too hard to locate services, notices and important actions.",
-            approach: "The redesign prioritises clear hierarchy, familiar government-style credibility, searchable services, accessible contrast, responsive navigation and restrained motion.",
-            features: ["Official light-theme visual language", "Clear service and notice hierarchy", "Responsive navigation", "Accessible component patterns", "Focused motion and interaction states", "Preservation of existing destinations"],
-            tags: ["UI strategy", "Information architecture", "Accessibility", "Responsive design", "Motion"]
+        erp: {
+            kicker: "Role-based administration platform",
+            title: "School ERP & User Management Platform",
+            summary: "A connected school administration environment where every user has a distinct identity, appropriate permissions and a clear workflow, while super administrators retain complete oversight.",
+            challenge: "Schools need different experiences for administrators, staff, teachers, students and alumni without duplicating data or exposing functions to the wrong role.",
+            approach: "I structured the platform around secure user accounts, granular permissions, role-aware navigation, academic-session logic, shared operational data and detailed audit visibility.",
+            features: ["Separate user IDs and secure login workflows", "Role-based dashboards and protected routes", "Teacher, student, staff and administrator access", "Attendance, notifications and academic-session workflows", "Password management and login history", "Super-admin visibility across user activity"],
+            tags: ["React", "Node.js", "PostgreSQL", "RBAC", "Authentication", "Audit logs"]
         }
     };
 

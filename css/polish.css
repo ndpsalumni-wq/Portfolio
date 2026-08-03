@@ -1,0 +1,181 @@
+/* Final responsive polish — prevents clipped text and strengthens portfolio layout. */
+html { width: 100%; overflow-x: clip; text-rendering: optimizeLegibility; }
+body { width: 100%; overflow-x: clip; }
+main, section, article, aside, nav, header, footer,
+.container, .hero-grid, .hero-copy, .hero-visual, .section-heading,
+.about-grid, .about-story, .about-text, .about-values,
+.project-feature, .project-copy, .project-showcase, .project-grid,
+.project-card, .project-card-body, .capability-layout, .capability-stage,
+.journey-grid, .timeline-item, .process-intro, .process-steps,
+.contact-shell, .contact-copy, .contact-links { min-width: 0; }
+
+h1, h2, h3, h4, strong, b, p, a, button, span, small, li {
+    max-width: 100%;
+}
+p, li, .project-meta span, .project-tags span, .skill-cloud span,
+.contact-links b, .footer-brand, .brand-copy { overflow-wrap: anywhere; }
+
+.hero h1,
+.section-heading h2,
+.process-intro h2,
+.contact-copy h2,
+.project-copy h3,
+.project-card-body h3,
+.project-modal h2,
+.journey-card h3 {
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+    padding-block: .035em .075em;
+    text-wrap: balance;
+    overflow: visible;
+}
+.hero h1 { max-width: 800px; line-height: 1.02; letter-spacing: -0.058em; }
+.gradient-text { display: inline; -webkit-box-decoration-break: clone; box-decoration-break: clone; padding-inline-end: .045em; }
+.hero-lead, .section-heading > p, .project-copy > p, .project-card-body p,
+.about-text p, .timeline-item p, .journey-card > p, .contact-copy > p { text-wrap: pretty; }
+
+.hero-role { width: 100%; min-height: 42px; line-height: 1.45; overflow: visible; }
+.hero-role strong { display: inline-block; min-width: 12ch; overflow: visible; }
+.button, .nav-cta, .text-button { line-height: 1.3; white-space: normal; text-align: center; }
+.nav-shell, .nav-actions, .brand { min-width: 0; }
+.project-meta span, .project-tags span { line-height: 1.25; text-align: center; }
+
+/* About section without the passport-style white-background image. */
+.about-story { grid-template-columns: minmax(235px, .68fr) minmax(0, 1.32fr); align-items: stretch; }
+.about-profile-card {
+    position: relative;
+    min-height: 430px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 25px;
+    border-radius: 28px;
+    overflow: hidden;
+    color: #fff;
+    background:
+        radial-gradient(circle at 90% 5%, rgba(124, 102, 238, .65), transparent 34%),
+        radial-gradient(circle at 0 100%, rgba(17, 155, 150, .34), transparent 38%),
+        linear-gradient(145deg, #14213d, #273e78 58%, #4a3a92);
+    box-shadow: 0 24px 55px rgba(20, 33, 61, .24);
+}
+.about-profile-card::before,
+.about-profile-card::after {
+    content: "";
+    position: absolute;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 50%;
+    pointer-events: none;
+}
+.about-profile-card::before { width: 300px; height: 300px; right: -165px; top: -120px; box-shadow: 0 0 0 48px rgba(255,255,255,.035); }
+.about-profile-card::after { width: 190px; height: 190px; left: -110px; bottom: -95px; }
+.profile-monogram,
+.profile-identity,
+.profile-facts,
+.profile-focus { position: relative; z-index: 1; }
+.profile-monogram {
+    width: 82px;
+    height: 82px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255,255,255,.24);
+    border-radius: 25px;
+    background: rgba(255,255,255,.12);
+    box-shadow: inset 0 1px rgba(255,255,255,.2);
+    backdrop-filter: blur(12px);
+}
+.profile-monogram span { font: 800 1.6rem/1 "Manrope", sans-serif; letter-spacing: -.06em; }
+.profile-status { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,.78); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+.profile-status i { width: 8px; height: 8px; border-radius: 50%; background: #69e0b1; box-shadow: 0 0 0 6px rgba(105,224,177,.13); }
+.profile-identity h3 { margin: 13px 0 7px; font: 800 clamp(1.75rem, 3vw, 2.35rem)/1.08 "Manrope", sans-serif; letter-spacing: -.05em; }
+.profile-identity p { margin: 0; color: rgba(255,255,255,.72); line-height: 1.45; }
+.profile-facts { display: grid; gap: 9px; }
+.profile-facts span { min-width: 0; padding: 10px 12px; display: flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 12px; background: rgba(255,255,255,.07); }
+.profile-facts i { width: 18px; flex: 0 0 18px; color: #b8c9ff; text-align: center; }
+.profile-facts b { min-width: 0; font-size: .76rem; line-height: 1.35; }
+.profile-focus { padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); }
+.profile-focus small { display: block; margin-bottom: 10px; color: rgba(255,255,255,.58); font-size: .65rem; font-weight: 800; text-transform: uppercase; letter-spacing: .11em; }
+.profile-focus > div { display: flex; flex-wrap: wrap; gap: 7px; }
+.profile-focus span { padding: 7px 9px; border-radius: 9px; background: rgba(255,255,255,.1); color: rgba(255,255,255,.84); font-size: .66rem; font-weight: 700; }
+.about-text { padding-right: 22px; }
+
+/* Two balanced supporting case studies. */
+.project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.project-card { height: 100%; }
+.project-card-body h3 { font-size: clamp(1.35rem, 2.4vw, 1.75rem); }
+.project-card-body p { margin-bottom: 18px; }
+
+/* ERP case-study illustration. */
+.visual-erp { padding: 27px; background: linear-gradient(145deg, #e9eeff, #f7f9ff); }
+.erp-window { height: 100%; overflow: hidden; border: 1px solid rgba(51,87,223,.1); border-radius: 19px; background: #fff; box-shadow: 0 20px 45px rgba(35,54,108,.14); }
+.erp-topbar { height: 49px; padding: 0 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid #edf0f8; }
+.erp-brand { color: #24365f; font-size: .7rem; font-weight: 900; letter-spacing: .04em; }
+.erp-live { display: inline-flex; align-items: center; gap: 6px; color: #75809a; font-size: .53rem; font-weight: 700; }
+.erp-live i { width: 6px; height: 6px; border-radius: 50%; background: #28b77a; box-shadow: 0 0 0 4px rgba(40,183,122,.1); }
+.erp-layout { height: calc(100% - 49px); display: grid; grid-template-columns: 50px minmax(0,1fr); }
+.erp-nav { padding: 14px 8px; display: flex; flex-direction: column; align-items: center; gap: 10px; background: #17264d; }
+.erp-nav span { width: 33px; height: 33px; display: grid; place-items: center; border-radius: 10px; color: rgba(255,255,255,.5); font-size: .67rem; }
+.erp-nav span.active { color: #fff; background: #4669e8; }
+.erp-content { min-width: 0; padding: 17px; background: #f7f9fd; }
+.erp-heading { min-width: 0; display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #263554; }
+.erp-heading > div { min-width: 0; display: grid; line-height: 1.25; }
+.erp-heading small { color: #929bb0; font-size: .5rem; }
+.erp-heading strong { font-size: .75rem; }
+.erp-heading > span { flex: 0 0 auto; padding: 7px 9px; border-radius: 8px; background: #3357df; color: #fff; font-size: .5rem; font-weight: 800; }
+.erp-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 7px; margin: 16px 0; }
+.erp-stats span { min-width: 0; padding: 10px; display: grid; border-radius: 11px; background: #fff; box-shadow: 0 7px 20px rgba(35,54,108,.06); }
+.erp-stats b { color: #263554; font-size: .72rem; }
+.erp-stats small { color: #9aa2b3; font-size: .45rem; }
+.erp-users { display: grid; gap: 7px; }
+.erp-users span { min-width: 0; padding: 10px 11px; display: grid; grid-template-columns: 27px minmax(0,1fr) auto; align-items: center; gap: 8px; border: 1px solid #edf0f7; border-radius: 11px; background: #fff; color: #2a395b; }
+.erp-users i { width: 27px; height: 27px; display: grid; place-items: center; border-radius: 8px; background: #edf1ff; color: #4563d8; font-size: .57rem; }
+.erp-users b { min-width: 0; font-size: .59rem; }
+.erp-users small { color: #929bb0; font-size: .46rem; white-space: nowrap; }
+
+/* Modal and secondary-page resilience. */
+.project-modal-panel { overscroll-behavior: contain; }
+.modal-grid > div, .contact-links a, .value-card, .process-steps article { min-width: 0; }
+.aux-shell, .aux-card, .site-card { min-width: 0; overflow-wrap: anywhere; }
+
+@media (max-width: 1120px) {
+    .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .project-grid .project-card:last-child { grid-column: auto; }
+}
+
+@media (max-width: 900px) {
+    .about-story { grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr); }
+    .project-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+    .hero h1 { font-size: clamp(2.45rem, 13vw, 4rem); line-height: 1.04; letter-spacing: -.045em; }
+    .section-heading h2, .process-intro h2, .contact-copy h2 { line-height: 1.1; letter-spacing: -.035em; }
+    .hero-role { justify-content: center; min-height: 55px; }
+    .hero-role strong { min-width: 0; width: 100%; }
+    .about-story { grid-template-columns: 1fr; padding: 12px; gap: 12px; }
+    .about-profile-card { min-height: 390px; padding: 25px; }
+    .about-text { padding: 18px 12px 12px; }
+    .project-feature { overflow: visible; }
+    .project-card { grid-template-rows: minmax(270px, auto) 1fr; }
+    .visual-erp { padding: 17px; }
+    .erp-content { padding: 13px; }
+    .erp-heading > span { display: none; }
+    .erp-users span { grid-template-columns: 27px minmax(0,1fr); }
+    .erp-users small { grid-column: 2; white-space: normal; }
+    .contact-links a { gap: 10px; }
+}
+
+@media (max-width: 430px) {
+    .container { width: min(calc(100% - 22px), var(--container)); }
+    .hero h1 { font-size: clamp(2.35rem, 12.8vw, 3.45rem); }
+    .hero-proof { gap: 0; }
+    .project-card { grid-template-rows: minmax(255px, auto) 1fr; }
+    .visual-erp { padding: 13px; }
+    .erp-layout { grid-template-columns: 42px minmax(0,1fr); }
+    .erp-nav { padding-inline: 5px; }
+    .erp-nav span { width: 30px; height: 30px; }
+    .erp-stats span { padding: 8px; }
+    .profile-identity h3 { font-size: 1.8rem; }
+    .project-modal { padding: 10px; }
+    .project-modal-panel { max-height: calc(100dvh - 20px); }
+}

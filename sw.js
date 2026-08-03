@@ -9,7 +9,6 @@ const PRECACHE_URLS = [
   './css/auxiliary.css?v=20260804',
   './js/script.js?v=20260804',
   './images/hero.jpg',
-  './images/about.jpg',
   './images/favicon.svg',
   './favicon-32x32.png',
   './site.webmanifest'

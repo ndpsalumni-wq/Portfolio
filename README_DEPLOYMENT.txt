@@ -6,7 +6,7 @@ WHAT IS INCLUDED
 - Light-first premium UI with optional dark mode
 - Animated hero, scroll reveals, typing effect, tilt interactions and progress indicator
 - Detailed project case studies and accessible project modals
-- NDPS website/ERP, digital records, automation and CBSE redesign work
+- NDPS website/ERP, digital records, automation and role-based ERP work
 - Responsive navigation for mobile, tablet and desktop
 - SEO metadata, social sharing data and Person structured data
 - PWA manifest, service worker, offline page and custom error pages
@@ -34,3 +34,9 @@ These private development files are intentionally excluded from this deployment 
 For security, rotate the old FTP password before using that hosting account again.
 
 LAST UPDATED: 4 August 2026
+
+LATEST POLISH UPDATE
+--------------------
+- Removed the passport-style white-background portrait from the website and package.
+- Added a focused School ERP & User Management case study.
+- Corrected responsive text wrapping, clipping, card sizing and mobile spacing.

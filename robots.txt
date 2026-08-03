@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aprojeetbhowmick.site.je/sitemap.xml
+Sitemap: https://aprojeet-portfolio.onrender.com/sitemap.xml
