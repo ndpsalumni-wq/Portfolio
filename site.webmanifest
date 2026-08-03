@@ -1,0 +1,27 @@
+{
+  "name": "Aprojeet Bhowmick — Digital Product Builder",
+  "short_name": "Aprojeet",
+  "description": "Portfolio of Aprojeet Bhowmick, a digital product builder and web developer.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#f7f9ff",
+  "background_color": "#f7f9ff",
+  "categories": ["portfolio", "web development", "technology", "education"],
+  "lang": "en-IN",
+  "icons": [
+    {
+      "src": "images/logo-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/logo-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

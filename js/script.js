@@ -1,147 +1,281 @@
-// ============================
-// Smooth Fade Animation
-// ============================
+(() => {
+    "use strict";
 
-const observer = new IntersectionObserver((entries) => {
+    const doc = document.documentElement;
+    const body = document.body;
+    const header = document.getElementById("siteHeader");
+    const progress = document.getElementById("scrollProgress");
+    const backToTop = document.getElementById("backToTop");
+    const menuButton = document.getElementById("menuButton");
+    const navPanel = document.getElementById("navPanel");
+    const themeToggle = document.getElementById("themeToggle");
+    const loader = document.getElementById("pageLoader");
+    const toast = document.getElementById("toast");
+    const modal = document.getElementById("projectModal");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    entries.forEach((entry) => {
-
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
+    const projectData = {
+        "ndps-ecosystem": {
+            kicker: "Flagship education ecosystem",
+            title: "New Delhi Public School Digital Ecosystem",
+            summary: "A connected portfolio of public-facing and administrative experiences designed around the needs of students, parents, teachers, alumni, staff and school leadership.",
+            challenge: "School information and administration involve many audiences, permissions and workflows. The challenge was to make those interactions feel organised rather than fragmented.",
+            approach: "I treated the website and portals as one ecosystem—using consistent patterns, responsive layouts, role-aware navigation and connected workflows across admissions, records, achievements, alumni and administration.",
+            features: ["Public school website and information architecture", "Admission application and status experiences", "Role-based dashboards and protected routes", "Alumni, achievements and notification workflows", "Responsive behaviour for desktop, tablet and mobile"],
+            tags: ["Product design", "React", "Node.js", "PostgreSQL", "RBAC", "Responsive UX"]
+        },
+        records: {
+            kicker: "Private data platform",
+            title: "NDPS Digital Records Management System",
+            summary: "A modular records platform designed to make large student datasets searchable, structured, auditable and usable across academic sessions.",
+            challenge: "Paper records and disconnected spreadsheets are difficult to search, update and secure. Historical and current-session information also need different treatment.",
+            approach: "The system was structured around student identity, session history, documents, role permissions, audit logs, secure uploads and fast search, with operational safeguards built into the workflow.",
+            features: ["Student and academic-session history", "Full-text and filtered search", "JWT authentication and role-based access", "Audit activity and login history", "Secure document handling and data validation", "Designed for 10,000+ student records"],
+            tags: ["Express", "PostgreSQL", "Security", "Data architecture", "Audit logs", "Search"]
+        },
+        automation: {
+            kicker: "Workflow automation",
+            title: "Smart Data Collection & Automation Suite",
+            summary: "A collection of branded Google Apps Script portals that replace repetitive manual collection work with verified, trackable digital workflows.",
+            challenge: "Collecting updates from students, former students and faculty can create duplicates, incomplete records and significant follow-up work.",
+            approach: "I built purpose-specific portals with validation, secure personal links, one-time submissions, uploads, automatic record creation, acknowledgements and status tracking in Google Workspace.",
+            features: ["Student Council application portal", "Alumni and former-student update workflows", "Teacher and faculty data collection", "Student email verification and updates", "Photo and document uploads", "Printable acknowledgements and submission IDs"],
+            tags: ["Apps Script", "Google Sheets", "Google Drive", "Gmail", "Validation", "Automation"]
+        },
+        design: {
+            kicker: "Public-sector UX concept",
+            title: "CBSE Website Redesign Concept",
+            summary: "A design exploration showing how a major education portal can feel modern and accessible while retaining an official, trustworthy institutional identity.",
+            challenge: "Large public websites often contain valuable information but make users work too hard to locate services, notices and important actions.",
+            approach: "The redesign prioritises clear hierarchy, familiar government-style credibility, searchable services, accessible contrast, responsive navigation and restrained motion.",
+            features: ["Official light-theme visual language", "Clear service and notice hierarchy", "Responsive navigation", "Accessible component patterns", "Focused motion and interaction states", "Preservation of existing destinations"],
+            tags: ["UI strategy", "Information architecture", "Accessibility", "Responsive design", "Motion"]
         }
+    };
 
+    function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("show");
+        window.clearTimeout(showToast.timer);
+        showToast.timer = window.setTimeout(() => toast.classList.remove("show"), 2300);
+    }
+
+    function updateThemeIcon(theme) {
+        if (!themeToggle) return;
+        const icon = themeToggle.querySelector("i");
+        const dark = theme === "dark";
+        icon.className = dark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        themeToggle.setAttribute("aria-label", dark ? "Switch to light theme" : "Switch to dark theme");
+        document.querySelector('meta[name="theme-color"]')?.setAttribute("content", dark ? "#0d1223" : "#f7f9ff");
+    }
+
+    const savedTheme = localStorage.getItem("aprojeet-theme");
+    if (savedTheme === "dark" || savedTheme === "light") doc.dataset.theme = savedTheme;
+    updateThemeIcon(doc.dataset.theme || "light");
+
+    themeToggle?.addEventListener("click", () => {
+        const next = doc.dataset.theme === "dark" ? "light" : "dark";
+        doc.dataset.theme = next;
+        localStorage.setItem("aprojeet-theme", next);
+        updateThemeIcon(next);
     });
 
-});
+    window.addEventListener("load", () => {
+        window.setTimeout(() => loader?.classList.add("hidden"), reduceMotion ? 0 : 650);
+    });
+    window.setTimeout(() => loader?.classList.add("hidden"), 3000);
 
-const hiddenElements = document.querySelectorAll(".hidden");
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+        });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px" });
 
-hiddenElements.forEach((el) => observer.observe(el));
+    document.querySelectorAll(".reveal").forEach((element) => {
+        if (reduceMotion) element.classList.add("visible");
+        else revealObserver.observe(element);
+    });
 
+    const sections = [...document.querySelectorAll("main section[id]")];
+    const navLinks = [...document.querySelectorAll(".nav-link")];
 
-// ============================
-// Sticky Navbar
-// ============================
+    function updateScrollUI() {
+        const scrollTop = window.scrollY || doc.scrollTop;
+        const max = doc.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? Math.min(1, scrollTop / max) : 0;
+        if (progress) progress.style.width = `${ratio * 100}%`;
+        header?.classList.toggle("scrolled", scrollTop > 20);
+        backToTop?.classList.toggle("visible", scrollTop > 600);
 
-window.addEventListener("scroll", () => {
-
-    const navbar = document.querySelector(".navbar");
-
-    if (window.scrollY > 50) {
-
-        navbar.style.background = "rgba(15,15,15,0.85)";
-        navbar.style.backdropFilter = "blur(20px)";
-        navbar.style.borderRadius = "15px";
-        navbar.style.padding = "15px 25px";
-
-    } else {
-
-        navbar.style.background = "transparent";
-        navbar.style.padding = "20px 0";
-
+        let current = "home";
+        sections.forEach((section) => {
+            if (scrollTop >= section.offsetTop - 180) current = section.id;
+        });
+        navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${current}`));
     }
 
-});
-// =====================
-// Typing Effect
-// =====================
+    window.addEventListener("scroll", updateScrollUI, { passive: true });
+    updateScrollUI();
 
-const words = [
-    "Web Developer",
-    "AI Enthusiast",
-    "Future Medical Professional"
-];
+    function closeMenu() {
+        navPanel?.classList.remove("open");
+        menuButton?.classList.remove("open");
+        menuButton?.setAttribute("aria-expanded", "false");
+        menuButton?.setAttribute("aria-label", "Open navigation");
+        body.classList.remove("menu-open");
+    }
 
-let wordIndex = 0;
-let letterIndex = 0;
-let currentWord = "";
-let isDeleting = false;
+    menuButton?.addEventListener("click", () => {
+        const open = !navPanel?.classList.contains("open");
+        navPanel?.classList.toggle("open", open);
+        menuButton.classList.toggle("open", open);
+        menuButton.setAttribute("aria-expanded", String(open));
+        menuButton.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+        body.classList.toggle("menu-open", open);
+    });
 
-function type() {
-
-    currentWord = words[wordIndex];
-
-    if (!isDeleting) {
-        document.getElementById("typing").textContent =
-            currentWord.substring(0, letterIndex++);
-
-        if (letterIndex > currentWord.length) {
-            isDeleting = true;
-            setTimeout(type, 1500);
-            return;
+    navLinks.forEach((link) => link.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeMenu();
+            closeModal();
         }
+    });
 
-    } else {
+    backToTop?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
 
-        document.getElementById("typing").textContent =
-            currentWord.substring(0, letterIndex--);
+    const typingTarget = document.getElementById("typingText");
+    const phrases = ["school platforms", "digital record systems", "administration workflows", "responsive web products", "automation tools"];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-        if (letterIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
+    function typePhrase() {
+        if (!typingTarget) return;
+        const phrase = phrases[phraseIndex];
+        typingTarget.textContent = phrase.slice(0, charIndex);
+        if (!deleting && charIndex < phrase.length) {
+            charIndex += 1;
+            window.setTimeout(typePhrase, 65);
+        } else if (!deleting) {
+            deleting = true;
+            window.setTimeout(typePhrase, 1450);
+        } else if (charIndex > 0) {
+            charIndex -= 1;
+            window.setTimeout(typePhrase, 28);
+        } else {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            window.setTimeout(typePhrase, 320);
         }
+    }
+    if (!reduceMotion) typePhrase();
 
+    document.querySelectorAll("[data-tilt]").forEach((card) => {
+        if (reduceMotion || !window.matchMedia("(pointer: fine)").matches) return;
+        card.addEventListener("mousemove", (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - .5;
+            const y = (event.clientY - rect.top) / rect.height - .5;
+            card.style.transform = `perspective(1000px) rotateY(${x * 7}deg) rotateX(${y * -7}deg) translateY(-2px)`;
+        });
+        card.addEventListener("mouseleave", () => { card.style.transform = ""; });
+    });
+
+    document.querySelectorAll(".capability-tab").forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const id = tab.dataset.tab;
+            document.querySelectorAll(".capability-tab").forEach((item) => {
+                const active = item === tab;
+                item.classList.toggle("active", active);
+                item.setAttribute("aria-selected", String(active));
+            });
+            document.querySelectorAll(".capability-panel").forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === id));
+        });
+    });
+
+    let lastFocusedElement = null;
+
+    function openModal(projectId) {
+        const data = projectData[projectId];
+        if (!modal || !data) return;
+        lastFocusedElement = document.activeElement;
+        document.getElementById("projectModalKicker").textContent = data.kicker;
+        document.getElementById("projectModalTitle").textContent = data.title;
+        document.getElementById("projectModalSummary").textContent = data.summary;
+        document.getElementById("projectModalChallenge").textContent = data.challenge;
+        document.getElementById("projectModalApproach").textContent = data.approach;
+
+        const features = document.getElementById("projectModalFeatures");
+        features.replaceChildren(...data.features.map((feature) => {
+            const li = document.createElement("li");
+            li.textContent = feature;
+            return li;
+        }));
+
+        const tags = document.getElementById("projectModalTags");
+        tags.replaceChildren(...data.tags.map((tag) => {
+            const span = document.createElement("span");
+            span.textContent = tag;
+            return span;
+        }));
+
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        body.classList.add("modal-open");
+        modal.querySelector(".modal-close")?.focus();
     }
 
-    setTimeout(type, isDeleting ? 50 : 100);
-}
-
-type();
-// =====================
-// Scroll Progress
-// =====================
-
-window.addEventListener("scroll",()=>{
-
-let scrollTop=document.documentElement.scrollTop;
-
-let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-
-let scrolled=(scrollTop/height)*100;
-
-document.getElementById("progress-bar").style.width=scrolled+"%";
-
-});
-// =====================
-// Back To Top
-// =====================
-
-const topBtn=document.getElementById("topBtn");
-
-window.addEventListener("scroll", () => {
-
-    if (document.documentElement.scrollTop > 400) {
-        topBtn.style.display = "block";
-    } else {
-        topBtn.style.display = "none";
+    function closeModal() {
+        if (!modal?.classList.contains("open")) return;
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+        body.classList.remove("modal-open");
+        if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
     }
 
-});
+    document.querySelectorAll(".project-open").forEach((button) => button.addEventListener("click", () => openModal(button.dataset.projectId)));
+    document.querySelectorAll("[data-close-modal]").forEach((element) => element.addEventListener("click", closeModal));
 
-topBtn.onclick=function(){
+    modal?.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab") return;
+        const focusable = [...modal.querySelectorAll('button, a[href], [tabindex]:not([tabindex="-1"])')].filter((el) => !el.disabled);
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    });
 
-window.scrollTo({
+    document.getElementById("copyEmail")?.addEventListener("click", async (event) => {
+        const email = event.currentTarget.dataset.email;
+        try {
+            await navigator.clipboard.writeText(email);
+            showToast("Email address copied");
+        } catch {
+            const textarea = document.createElement("textarea");
+            textarea.value = email;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            textarea.remove();
+            showToast("Email address copied");
+        }
+    });
 
-top:0,
+    const year = document.getElementById("currentYear");
+    if (year) year.textContent = new Date().getFullYear();
 
-behavior:"smooth"
-
-});
-
-}
-window.addEventListener("load",function(){
-
-setTimeout(()=>{
-
-document.getElementById("loader").style.opacity="0";
-
-document.getElementById("loader").style.visibility="hidden";
-
-},1500);
-
-});
-const year = document.getElementById("year");
-
-if(year){
-    year.textContent = new Date().getFullYear();
-}
+    if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+        window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+    }
+})();

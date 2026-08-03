@@ -1,0 +1,158 @@
+# ============================================================
+# APROJEET BHOWMICK | PORTFOLIO - APACHE CONFIGURATION
+# Optimized for SEO, Performance & Security
+# ============================================================
+
+# ================= REWRITE ENGINE =================
+RewriteEngine On
+
+# ================= EXCLUDE CRITICAL FILES FROM REWRITES =================
+RewriteCond %{REQUEST_URI} !^/sitemap\.xml$ [NC]
+RewriteCond %{REQUEST_URI} !^/sitemap\.html$ [NC]
+RewriteCond %{REQUEST_URI} !^/robots\.txt$ [NC]
+RewriteCond %{REQUEST_URI} !^/favicon\.ico$ [NC]
+RewriteCond %{REQUEST_URI} !^/site\.webmanifest$ [NC]
+RewriteCond %{REQUEST_URI} !^/apple-touch-icon\.png$ [NC]
+RewriteCond %{REQUEST_URI} !^/images/webp/ [NC]
+
+# ================= SINGLE PAGE APPLICATION RULES =================
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.html [L]
+
+# ================= CORRECT MIME TYPES =================
+<IfModule mod_mime.c>
+    AddType application/xml .xml
+    AddType text/plain .txt
+    AddType image/webp .webp
+    AddType application/json .json
+    AddType image/svg+xml .svg
+    AddType font/woff2 .woff2
+    AddType font/woff .woff
+    
+    # Serve .js files with correct MIME type
+    AddType application/javascript .js
+    
+    # Ensure .css files are served correctly
+    AddType text/css .css
+</IfModule>
+
+# ================= PREVENT DIRECTORY LISTING =================
+Options -Indexes
+
+# ================= COMPRESSION (Gzip/Brotli) =================
+<IfModule mod_deflate.c>
+    # Enable compression
+    SetOutputFilter DEFLATE
+    
+    # Compress HTML, CSS, JavaScript, XML, JSON
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+    AddOutputFilterByType DEFLATE application/json application/ld+json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    
+    # Remove browser bugs
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    Header append Vary User-Agent
+</IfModule>
+
+# ================= BROWSER CACHING =================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Default: 1 month
+    ExpiresDefault "access plus 1 month"
+    
+    # HTML: 1 day (frequent updates)
+    ExpiresByType text/html "access plus 1 day"
+    
+    # CSS & JS: one week with revalidation
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType application/x-javascript "access plus 7 days"
+    
+    # Images: 1 year
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Fonts: 1 year
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/x-font-ttf "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    
+    # PDF & Documents: 1 month
+    ExpiresByType application/pdf "access plus 1 month"
+    
+    # XML & JSON: 1 hour
+    ExpiresByType application/xml "access plus 1 hour"
+    ExpiresByType application/json "access plus 1 hour"
+    ExpiresByType application/ld+json "access plus 1 hour"
+    
+    # Text files: 1 day
+    ExpiresByType text/plain "access plus 1 day"
+</IfModule>
+
+# ================= CACHE CONTROL HEADERS =================
+<IfModule mod_headers.c>
+    # CSS & JS: cache for one week and revalidate
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=604800, must-revalidate"
+    </FilesMatch>
+    
+    # Images: 1 year
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # Fonts: 1 year
+    <FilesMatch "\.(woff|woff2|ttf|otf|eot)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    
+    # HTML: 1 day, must revalidate
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "public, max-age=86400, must-revalidate"
+    </FilesMatch>
+    
+    # PDF: 1 month
+    <FilesMatch "\.pdf$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    
+    # XML & JSON: 1 hour
+    <FilesMatch "\.(xml|json)$">
+        Header set Cache-Control "public, max-age=3600"
+    </FilesMatch>
+</IfModule>
+
+# ================= SECURITY HEADERS =================
+<IfModule mod_headers.c>
+    # X-Content-Type-Options: Prevent MIME sniffing
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # X-Frame-Options: Prevent clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Referrer-Policy: Control referrer information
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    
+    # Permissions-Policy: Restrict browser features
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+    
+    # Strict-Transport-Security: Force HTTPS (if using HTTPS)
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# ================= 404 ERROR PAGE =================
+ErrorDocument 404 /404.html
+ErrorDocument 403 /403.html
+ErrorDocument 500 /500.html
