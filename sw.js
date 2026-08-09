@@ -1,11 +1,12 @@
 /* Aprojeet Bhowmick portfolio service worker */
-const CACHE_NAME = 'aprojeet-portfolio-v2-20260804';
+const CACHE_NAME = 'aprojeet-portfolio-v3-20260809';
 const PRECACHE_URLS = [
   './',
   './index.html',
   './offline.html',
   './404.html',
   './css/style.css?v=20260804',
+  './css/polish.css?v=20260809-glass',
   './css/auxiliary.css?v=20260804',
   './js/script.js?v=20260804',
   './images/hero.jpg',
