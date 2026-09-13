@@ -1,15 +1,16 @@
 /* Aprojeet Bhowmick portfolio service worker */
-const CACHE_NAME = 'aprojeet-portfolio-v5-compact';
+const CACHE_NAME = 'aprojeet-portfolio-v6-refined';
 const PRECACHE_URLS = [
   './',
   './index.html',
+  './privacy.html',
   './offline.html',
   './404.html',
   './css/style.css?v=20260804',
   './css/polish.css?v=20260809-glass',
-  './css/portfolio.css?v=20260913-compact',
+  './css/portfolio.css?v=20260913-refined',
   './css/auxiliary.css?v=20260804',
-  './js/script.js?v=20260913-compact',
+  './js/script.js?v=20260913-refined',
   './images/hero.jpg',
   './images/favicon.svg',
   './favicon-32x32.png',
