@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="css/style.css?v=20260804">
     <link rel="stylesheet" href="css/polish.css?v=20260809-glass">
+    <link rel="stylesheet" href="css/cinematic.css?v=20260913">
+    <noscript><style>.reveal,.story-chapter{opacity:1!important;transform:none!important}.motion-control{display:none}</style></noscript>
 
     <script type="application/ld+json">
     {
@@ -118,66 +120,43 @@
     </header>
 
     <main id="main-content">
-        <section class="hero section" id="home">
-            <div class="hero-grid container">
-                <div class="hero-copy reveal">
-                    <div class="eyebrow"><span class="status-dot"></span> Building meaningful digital systems</div>
-                    <h1>Ideas become <span class="gradient-text">useful products</span> when design and technology work together.</h1>
-                    <p class="hero-lead">
-                        I’m <strong>Aprojeet Bhowmick</strong> — a digital product builder and web developer creating school websites, ERP platforms, digital records software, automation workflows and polished web experiences.
-                    </p>
-                    <div class="hero-role" aria-live="polite">
-                        <span>I build</span>
-                        <strong id="typingText">school platforms</strong>
-                        <span class="typing-caret" aria-hidden="true"></span>
-                    </div>
-                    <div class="hero-actions">
-                        <a class="button button-primary magnetic" href="#work">Explore selected work <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-                        <a class="button button-secondary" href="mailto:aprojeetbhowmick2008@gmail.com">Start a conversation</a>
-                    </div>
-                    <div class="hero-proof" aria-label="Highlights">
-                        <div><strong>6+</strong><span>product areas</span></div>
-                        <div><strong>10K+</strong><span>record-ready scale</span></div>
-                        <div><strong>2025–26</strong><span>Head Boy</span></div>
-                    </div>
-                </div>
-
-                <div class="hero-visual reveal reveal-delay-1" aria-label="Portrait of Aprojeet Bhowmick">
-                    <div class="portrait-frame" data-tilt>
-                        <div class="portrait-orbit orbit-one" aria-hidden="true"></div>
-                        <div class="portrait-orbit orbit-two" aria-hidden="true"></div>
-                        <picture>
-                            <source srcset="images/webp/hero.webp" type="image/webp">
-                            <img src="images/hero.jpg" alt="Aprojeet Bhowmick" width="760" height="950" fetchpriority="high">
-                        </picture>
-                        <div class="portrait-overlay"></div>
-                        <div class="portrait-label">
-                            <span class="label-icon"><i class="fa-solid fa-code" aria-hidden="true"></i></span>
-                            <span><small>Currently focused on</small><strong>Education technology</strong></span>
-                        </div>
-                    </div>
-                    <div class="floating-card floating-card-one" aria-hidden="true">
-                        <i class="fa-solid fa-layer-group"></i>
-                        <span><small>End-to-end</small><strong>Product thinking</strong></span>
-                    </div>
-                    <div class="floating-card floating-card-two" aria-hidden="true">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <span><small>Design approach</small><strong>Clean + functional</strong></span>
-                    </div>
-                </div>
+        <section class="scroll-story" id="home" aria-label="Aprojeet's story">
+            <div class="story-stage" aria-label="Stylised 3D avatar of Aprojeet">
+                <div class="stage-orbit" aria-hidden="true"></div>
+                <div id="avatar-stage"><img class="avatar-fallback" src="images/hero.jpg" alt="Aprojeet Bhowmick" width="760" height="950"/></div>
+                <div class="stage-caption"><span class="status-dot"></span> APROJEET / IN MOTION</div>
+                <button id="motionToggle" class="motion-control" type="button" aria-pressed="false">Pause motion</button>
+                <span class="stage-index" aria-hidden="true">01 / 04</span>
             </div>
-
-            <div class="trusted-strip reveal">
-                <div class="container trusted-inner">
-                    <span class="trusted-label">What I work across</span>
-                    <div class="trusted-items" aria-label="Areas of work">
-                        <span><i class="fa-solid fa-school"></i> School platforms</span>
-                        <span><i class="fa-solid fa-database"></i> Digital records</span>
-                        <span><i class="fa-solid fa-chart-line"></i> Admin dashboards</span>
-                        <span><i class="fa-solid fa-gears"></i> Automation</span>
-                        <span><i class="fa-solid fa-mobile-screen-button"></i> Responsive UX</span>
-                    </div>
-                </div>
+            <div class="story-chapters">
+                <article class="story-chapter" data-chapter="0">
+                    <p class="chapter-label">PORTFOLIO / APROJEET BHOWMICK</p>
+                    <h1>Curiosity.<br/>Code.<br/><em>Possibility.</em></h1>
+                    <p class="chapter-description">I'm Aprojeet. A digital product builder turning complex ideas into useful, considered experiences.</p>
+                    <a class="cinema-link" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
+                    <p class="scroll-cue">↓ SCROLL TO EXPLORE MY STORY</p>
+                </article>
+                <article class="story-chapter" data-chapter="1">
+                    <p class="chapter-label">01 / ALWAYS LEARNING</p>
+                    <h2>Science is<br/>my next<br/><em>chapter.</em></h2>
+                    <p class="chapter-description">Newly enrolled in B.Sc. Science at Indira Gandhi National Open University. A new chapter in learning, alongside my work in technology.</p>
+                    <div class="chapter-detail"><span>IGNOU / 2026–2029 (EXPECTED)</span><strong>B.Sc. Science · Pursuing</strong></div>
+                    <div class="chapter-detail"><span>CLASS XII / SCIENCE (PCB)</span><strong>82.4% · NDPS, Vikaspuri</strong></div>
+                </article>
+                <article class="story-chapter" data-chapter="2">
+                    <p class="chapter-label">02 / LEARNING TO LEAD</p>
+                    <h2>People.<br/>Purpose.<br/><em>Responsibility.</em></h2>
+                    <p class="chapter-description">Leadership taught me to listen, bring people together, and follow through. I carry that same approach into everything I build.</p>
+                    <div class="chapter-detail"><span>2025–26</span><strong>Head Boy · New Delhi Public School</strong></div>
+                    <div class="chapter-detail"><span>2024–25</span><strong>Nilgiri House Captain</strong></div>
+                </article>
+                <article class="story-chapter" data-chapter="3">
+                    <p class="chapter-label">03 / IDEAS INTO SYSTEMS</p>
+                    <h2>Made to<br/>make a<br/><em>difference.</em></h2>
+                    <p class="chapter-description">School platforms. Digital records. Administration tools. Thoughtfully designed software for the people who use it.</p>
+                    <div class="chapter-detail"><span>DESIGN + DEVELOPMENT</span><strong>From the first sketch to the final interaction.</strong></div>
+                    <a class="cinema-link" href="#work">The selected projects <span aria-hidden="true">↗</span></a>
+                </article>
             </div>
         </section>
 
@@ -211,7 +190,7 @@
                             </div>
                         </div>
                         <div class="about-text">
-                            <p class="lead-paragraph">I’m a Science (PCB) graduate from <strong>New Delhi Public School, Vikaspuri</strong>, where I completed Class XII with <strong>82.4%</strong>.</p>
+                            <p class="lead-paragraph">I’m now pursuing <strong>B.Sc. Science at IGNOU</strong>, with expected completion in <strong>2029</strong>. I completed Class XII in Science (PCB) at <strong>New Delhi Public School, Vikaspuri</strong> with <strong>82.4%</strong>.</p>
                             <p>Alongside my interest in medicine, I discovered that I also enjoy solving institutional problems through design and software. That journey grew from creating websites into developing school administration tools, secure record systems, role-based portals and automated data workflows.</p>
                             <p>I use modern development tools and AI-assisted workflows thoughtfully—to research, prototype, test and improve products faster without losing attention to quality, accuracy or the people using them.</p>
                         </div>
@@ -431,6 +410,10 @@
 
                 <div class="journey-grid">
                     <div class="timeline reveal">
+                        <article class="timeline-item">
+                            <span class="timeline-year">2026–29</span>
+                            <div><small>Education · Expected completion 2029</small><h3>B.Sc. Science at IGNOU</h3><p>Newly enrolled at Indira Gandhi National Open University, continuing my science education alongside building digital products.</p></div>
+                        </article>
                         <article class="timeline-item active">
                             <span class="timeline-year">2026</span>
                             <div><small>Product building</small><h3>Expanded the NDPS digital ecosystem</h3><p>Worked across public web experiences, role-based ERP workflows, digital records, admissions, alumni, attendance, notification and automation systems.</p></div>
@@ -451,7 +434,8 @@
 
                     <aside class="journey-card reveal reveal-delay-1">
                         <span class="section-kicker">Education & direction</span>
-                        <h3>Science, technology and a future in medicine.</h3>
+                        <h3>B.Sc. Science · IGNOU.</h3>
+                        <p>Newly enrolled at Indira Gandhi National Open University in 2026, with expected completion in 2029. I am continuing my education alongside digital product design and development.</p>
                         <p>I completed Class XII in the Science (PCB) stream with 82.4%. Medicine remains an important long-term direction, while technology gives me a powerful way to solve problems, create systems and contribute today.</p>
                         <div class="journey-stat"><strong>82.4%</strong><span>Class XII • Science (PCB)</span></div>
                         <div class="journey-stat"><strong>24 May 2026</strong><span>AI workshop completion</span></div>
@@ -533,5 +517,6 @@
     </div>
 
     <script src="js/script.js?v=20260804-2" defer></script>
+    <script type="module" src="js/cinematic.js?v=20260913"></script>
 </body>
 </html>
