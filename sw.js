@@ -1,5 +1,5 @@
 /* Aprojeet Bhowmick portfolio service worker */
-const CACHE_NAME = 'aprojeet-portfolio-v6-refined';
+const CACHE_NAME = 'aprojeet-portfolio-v7-branding';
 const PRECACHE_URLS = [
   './',
   './index.html',
@@ -14,6 +14,7 @@ const PRECACHE_URLS = [
   './images/hero.jpg',
   './images/favicon.svg',
   './favicon-32x32.png',
+  './favicon-96x96.png',
   './site.webmanifest'
 ];
 

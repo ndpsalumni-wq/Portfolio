@@ -1,13 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
-  <title id="title">AB monogram</title>
-  <defs>
-    <linearGradient id="g" x1="64" y1="40" x2="448" y2="472" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#2457F5"/>
-      <stop offset="1" stop-color="#7754F6"/>
-    </linearGradient>
-</defs>
-  <rect x="32" y="32" width="448" height="448" rx="144" fill="url(#g)"/>
-  <path d="M126 357 210 151h45l84 206h-48l-18-49h-82l-18 49h-47Zm80-89h52l-26-72-26 72Z" fill="#fff"/>
-  <path d="M303 151h61c52 0 82 21 82 58 0 23-12 40-34 49 28 8 43 27 43 54 0 43-33 65-93 65h-59V151Zm45 39v51h16c24 0 36-9 36-26 0-17-12-25-37-25h-15Zm0 88v60h20c28 0 42-10 42-30 0-20-14-30-43-30h-19Z" fill="#fff" opacity=".94"/>
-  <circle cx="405" cy="111" r="17" fill="#72E4D3"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title"><title id="title">Aprojeet Bhowmick monogram</title><rect width="512" height="512" fill="#202b29"/><text x="256" y="256" dy=".32em" text-anchor="middle" font-family="Arial,sans-serif" font-size="276" font-weight="700" fill="#f7f7f2">ab</text></svg>
